@@ -1,9 +1,18 @@
 import './global.css'
 
+import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { RouterProvider } from 'react-router-dom'
+
+import { ThemeProvider } from './components/theme/theme-provider'
+import { router } from './routes'
+
 export function App() {
   return (
-    <div className="flex h-screen items-center justify-center">
-      <h1>Oi</h1>
-    </div>
+    <HelmetProvider>
+      <ThemeProvider storageKey="request-epi" defaultTheme="dark">
+        <Helmet titleTemplate="%s | request-epi" />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </HelmetProvider>
   )
 }

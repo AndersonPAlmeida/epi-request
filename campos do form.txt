@@ -1,0 +1,18 @@
+Dados do colaborador
+-Matricula
+-Nome
+-Telefone para contato
+-N° da equipe
+
+Itens para solicitar
+-Nome do material
+-Quantidade
+-Foto do material antigo
+-Motivo da substituição
+--Desgaste/Avaria
+--Perda
+--Teste Dielétrico vencido ou a vencer
+--Roubo/furto
+--Adição checklist
+
+Dividir entre material de equipe e individual
