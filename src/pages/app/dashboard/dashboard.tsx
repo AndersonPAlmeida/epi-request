@@ -18,9 +18,10 @@ import { Label } from '@/components/ui/label'
 const newItemForm = z.object({
   nameItem: z.string().min(3, 'Informe o nome corretamente'),
   quantityStock: z.number(),
-  teamsUsingTheItem: z
-    .array(z.enum(['ccm-lm', 'ccm-lv', 'stc', 'leiturista']))
-    .min(1, 'minimo'),
+  ccmlm: z.boolean(),
+  ccmlv: z.boolean(),
+  stc: z.boolean(),
+  leiturista: z.boolean(),
 })
 
 type NewItemForm = z.infer<typeof newItemForm>
@@ -67,7 +68,37 @@ export function Dashboard() {
               />
             </div>
 
-            <Controller
+            <div className="flex gap-2">
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Checkbox {...register('ccmlm')} />
+                  <Label>CCM LM</Label>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Checkbox {...register('ccmlv')} />
+                  <Label>CCM LV</Label>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Checkbox {...register('stc')} />
+                  <Label>STC</Label>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Checkbox {...register('leiturista')} />
+                  <Label>LEITURISTA</Label>
+                </div>
+              </div>
+            </div>
+
+            {/* <Controller
               control={control}
               name="teamsUsingTheItem"
               defaultValue={[]}
@@ -76,7 +107,7 @@ export function Dashboard() {
                   <>
                     <div className="flex gap-4">
                       <div className="flex gap-2">
-                        <Checkbox value="ccm-lm" onChange={onChange} />
+                        <Checkbox value="ccm-lm" {...register('teamsUsingTheItem')} />
                         <Label>CCM LM</Label>
                       </div>
                       <div className="flex gap-2">
@@ -104,7 +135,7 @@ export function Dashboard() {
                   </>
                 )
               }}
-            />
+            /> */}
 
             <DialogFooter>
               <Button type="submit" variant="success" className="w-full">
