@@ -18,16 +18,21 @@ import { Label } from '@/components/ui/label'
 const newItemForm = z.object({
   nameItem: z.string().min(3, 'Informe o nome corretamente'),
   quantityStock: z.number(),
-  ccmlm: z.boolean(),
-  ccmlv: z.boolean(),
-  stc: z.boolean(),
-  leiturista: z.boolean(),
+  equipes: z.array(z.string()).refine((value) => value.length > 0, {
+    message: "You have to select at least one item.",
+  }),
 })
 
 type NewItemForm = z.infer<typeof newItemForm>
 
 export function Dashboard() {
-  const { register, handleSubmit, control } = useForm<NewItemForm>()
+  const { register, handleSubmit, control } = useForm<NewItemForm>({
+    defaultValues:{
+      nameItem: "",
+      quantityStock: 0,
+      equipes: [],
+    }
+  })
 
   function handleSaveItem(data: NewItemForm) {
     console.log(data)
@@ -56,7 +61,7 @@ export function Dashboard() {
               />
             </div>
 
-            <div className="space-y-2">
+             <div className="space-y-2">
               <Label htmlFor="quantityStock">
                 Quantidade do item em estoque
               </Label>
@@ -67,76 +72,104 @@ export function Dashboard() {
                 {...register('quantityStock')}
               />
             </div>
-
-            <div className="flex gap-2">
-              <div className="space-y-2">
-                <div className="flex gap-2">
-                  <Checkbox {...register('ccmlm')} />
-                  <Label>CCM LM</Label>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="flex gap-2">
-                  <Checkbox {...register('ccmlv')} />
-                  <Label>CCM LV</Label>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex gap-2">
-                  <Checkbox {...register('stc')} />
-                  <Label>STC</Label>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex gap-2">
-                  <Checkbox {...register('leiturista')} />
-                  <Label>LEITURISTA</Label>
-                </div>
-              </div>
-            </div>
-
-            {/* <Controller
-              control={control}
-              name="teamsUsingTheItem"
-              defaultValue={[]}
-              render={({ field: { onChange } }) => {
+            
+          <div className="flex gap-2">
+            <Controller 
+              name="equipes"
+              control={control} 
+              render={({ field }) => {
                 return (
-                  <>
-                    <div className="flex gap-4">
-                      <div className="flex gap-2">
-                        <Checkbox value="ccm-lm" {...register('teamsUsingTheItem')} />
-                        <Label>CCM LM</Label>
-                      </div>
-                      <div className="flex gap-2">
-                        <Checkbox
-                          value="ccm-lv"
-                          {...register('teamsUsingTheItem')}
-                        />
-                        <Label>CCM LV</Label>
-                      </div>
-                      <div className="flex gap-2">
-                        <Checkbox
-                          value="stc"
-                          {...register('teamsUsingTheItem')}
-                        />
-                        <Label>STC</Label>
-                      </div>
-                      <div className="flex gap-2">
-                        <Checkbox
-                          value="leiturista"
-                          {...register('teamsUsingTheItem')}
-                        />
-                        <Label>Leiturista</Label>
-                      </div>
-                    </div>
-                  </>
+                  <div className="flex gap-2">
+                    <Checkbox 
+                      checked={field.value?.includes("ccmlm")}
+                      onCheckedChange={(checked) => {
+                        return checked
+                          ? field.onChange([...field.value, "ccmlm"])
+                          : field.onChange(
+                              field.value?.filter(
+                                (value) => value !== "ccmlm"
+                              )
+                            )
+                      }}
+                    />
+                    <Label>CCM LM</Label>
+                  </div>
                 )
               }}
-            /> */}
+            />
 
+            <Controller 
+              name="equipes"
+              control={control} 
+              render={({ field }) => {
+                return (
+                  <div className="flex gap-2">
+                    <Checkbox 
+                      checked={field.value?.includes("ccmlv")}
+                      onCheckedChange={(checked) => {
+                        return checked
+                          ? field.onChange([...field.value, "ccmlv"])
+                          : field.onChange(
+                              field.value?.filter(
+                                (value) => value !== "ccmlv"
+                              )
+                            )
+                      }}
+                    />
+                    <Label>CCM LV</Label>
+                  </div>
+                )
+              }}
+            />
+
+            <Controller 
+              name="equipes"
+              control={control} 
+              render={({ field }) => {
+                return (
+                  <div className="flex gap-2">
+                    <Checkbox 
+                      checked={field.value?.includes("stc")}
+                      onCheckedChange={(checked) => {
+                        return checked
+                          ? field.onChange([...field.value, "stc"])
+                          : field.onChange(
+                              field.value?.filter(
+                                (value) => value !== "stc"
+                              )
+                            )
+                      }}
+                    />
+                    <Label>STC</Label>
+                  </div>
+                )
+              }}
+            />
+
+            <Controller 
+              name="equipes"
+              control={control} 
+              render={({ field }) => {
+                return (
+                  <div className="flex gap-2">
+                    <Checkbox 
+                      checked={field.value?.includes("leiturista")}
+                      onCheckedChange={(checked) => {
+                        return checked
+                          ? field.onChange([...field.value, "leiturista"])
+                          : field.onChange(
+                              field.value?.filter(
+                                (value) => value !== "leiturista"
+                              )
+                            )
+                      }}
+                    />
+                    <Label>LEITURISTA</Label>
+                  </div>
+                )
+              }}
+            />
+        </div>
             <DialogFooter>
               <Button type="submit" variant="success" className="w-full">
                 <Save />
