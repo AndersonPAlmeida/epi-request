@@ -5,10 +5,10 @@ import { MenuNavigation } from '@/components/menu-navigation'
 
 export function AppLayout() {
   return (
-    <div className="flex min-h-screen flex-col antialiased">
-      <Header />
-      <div className="grid min-h-[calc(100vh_-_65px)] grid-cols-[200px_1fr]">
-        <MenuNavigation />
+    <div className="grid min-h-screen grid-cols-[200px_1fr]">
+      <MenuNavigation />
+      <div>
+        <Header />
         <Outlet />
       </div>
     </div>
