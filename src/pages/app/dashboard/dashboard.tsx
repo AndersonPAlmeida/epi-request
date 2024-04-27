@@ -19,7 +19,7 @@ const newItemForm = z.object({
   nameItem: z.string().min(3, 'Informe o nome corretamente'),
   quantityStock: z.number(),
   equipes: z.array(z.string()).refine((value) => value.length > 0, {
-    message: "You have to select at least one item.",
+    message: 'You have to select at least one item.',
   }),
 })
 
@@ -27,11 +27,11 @@ type NewItemForm = z.infer<typeof newItemForm>
 
 export function Dashboard() {
   const { register, handleSubmit, control } = useForm<NewItemForm>({
-    defaultValues:{
-      nameItem: "",
+    defaultValues: {
+      nameItem: '',
       quantityStock: 0,
       equipes: [],
-    }
+    },
   })
 
   function handleSaveItem(data: NewItemForm) {
@@ -61,7 +61,7 @@ export function Dashboard() {
               />
             </div>
 
-             <div className="space-y-2">
+            <div className="space-y-2">
               <Label htmlFor="quantityStock">
                 Quantidade do item em estoque
               </Label>
@@ -72,104 +72,102 @@ export function Dashboard() {
                 {...register('quantityStock')}
               />
             </div>
-            
-          <div className="flex gap-2">
-            <Controller 
-              name="equipes"
-              control={control} 
-              render={({ field }) => {
-                return (
-                  <div className="flex gap-2">
-                    <Checkbox 
-                      checked={field.value?.includes("ccmlm")}
-                      onCheckedChange={(checked) => {
-                        return checked
-                          ? field.onChange([...field.value, "ccmlm"])
-                          : field.onChange(
-                              field.value?.filter(
-                                (value) => value !== "ccmlm"
-                              )
-                            )
-                      }}
-                    />
-                    <Label>CCM LM</Label>
-                  </div>
-                )
-              }}
-            />
 
-            <Controller 
-              name="equipes"
-              control={control} 
-              render={({ field }) => {
-                return (
-                  <div className="flex gap-2">
-                    <Checkbox 
-                      checked={field.value?.includes("ccmlv")}
-                      onCheckedChange={(checked) => {
-                        return checked
-                          ? field.onChange([...field.value, "ccmlv"])
-                          : field.onChange(
-                              field.value?.filter(
-                                (value) => value !== "ccmlv"
+            <div className="flex gap-2">
+              <Controller
+                name="equipes"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <div className="flex gap-2">
+                      <Checkbox
+                        checked={field.value?.includes('ccmlm')}
+                        onCheckedChange={(checked) => {
+                          return checked
+                            ? field.onChange([...field.value, 'ccmlm'])
+                            : field.onChange(
+                                field.value?.filter(
+                                  (value) => value !== 'ccmlm',
+                                ),
                               )
-                            )
-                      }}
-                    />
-                    <Label>CCM LV</Label>
-                  </div>
-                )
-              }}
-            />
+                        }}
+                      />
+                      <Label>CCM LM</Label>
+                    </div>
+                  )
+                }}
+              />
 
-            <Controller 
-              name="equipes"
-              control={control} 
-              render={({ field }) => {
-                return (
-                  <div className="flex gap-2">
-                    <Checkbox 
-                      checked={field.value?.includes("stc")}
-                      onCheckedChange={(checked) => {
-                        return checked
-                          ? field.onChange([...field.value, "stc"])
-                          : field.onChange(
-                              field.value?.filter(
-                                (value) => value !== "stc"
+              <Controller
+                name="equipes"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <div className="flex gap-2">
+                      <Checkbox
+                        checked={field.value?.includes('ccmlv')}
+                        onCheckedChange={(checked) => {
+                          return checked
+                            ? field.onChange([...field.value, 'ccmlv'])
+                            : field.onChange(
+                                field.value?.filter(
+                                  (value) => value !== 'ccmlv',
+                                ),
                               )
-                            )
-                      }}
-                    />
-                    <Label>STC</Label>
-                  </div>
-                )
-              }}
-            />
+                        }}
+                      />
+                      <Label>CCM LV</Label>
+                    </div>
+                  )
+                }}
+              />
 
-            <Controller 
-              name="equipes"
-              control={control} 
-              render={({ field }) => {
-                return (
-                  <div className="flex gap-2">
-                    <Checkbox 
-                      checked={field.value?.includes("leiturista")}
-                      onCheckedChange={(checked) => {
-                        return checked
-                          ? field.onChange([...field.value, "leiturista"])
-                          : field.onChange(
-                              field.value?.filter(
-                                (value) => value !== "leiturista"
+              <Controller
+                name="equipes"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <div className="flex gap-2">
+                      <Checkbox
+                        checked={field.value?.includes('stc')}
+                        onCheckedChange={(checked) => {
+                          return checked
+                            ? field.onChange([...field.value, 'stc'])
+                            : field.onChange(
+                                field.value?.filter((value) => value !== 'stc'),
                               )
-                            )
-                      }}
-                    />
-                    <Label>LEITURISTA</Label>
-                  </div>
-                )
-              }}
-            />
-        </div>
+                        }}
+                      />
+                      <Label>STC</Label>
+                    </div>
+                  )
+                }}
+              />
+
+              <Controller
+                name="equipes"
+                control={control}
+                render={({ field }) => {
+                  return (
+                    <div className="flex gap-2">
+                      <Checkbox
+                        checked={field.value?.includes('leiturista')}
+                        onCheckedChange={(checked) => {
+                          return checked
+                            ? field.onChange([...field.value, 'leiturista'])
+                            : field.onChange(
+                                field.value?.filter(
+                                  (value) => value !== 'leiturista',
+                                ),
+                              )
+                        }}
+                      />
+                      <Label>LEITURISTA</Label>
+                    </div>
+                  )
+                }}
+              />
+            </div>
             <DialogFooter>
               <Button type="submit" variant="success" className="w-full">
                 <Save />
