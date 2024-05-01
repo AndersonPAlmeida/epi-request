@@ -16,7 +16,7 @@ export function MenuNavigation() {
         </NavLink>
         <NavLink to="/items">
           <Wrench className="h-4 w-4" />
-          Início
+          Items
         </NavLink>
       </nav>
     </div>
