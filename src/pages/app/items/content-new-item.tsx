@@ -112,16 +112,19 @@ export function ContentNewItem() {
                 return (
                   <div className="flex gap-2">
                     <Checkbox
-                      checked={field.value?.includes('ccmlm')}
+                      id="ccm-lm"
+                      checked={field.value?.includes('ccm-lm')}
                       onCheckedChange={(checked) => {
                         return checked
-                          ? field.onChange([...field.value, 'ccmlm'])
+                          ? field.onChange([...field.value, 'ccm-lm'])
                           : field.onChange(
-                              field.value?.filter((value) => value !== 'ccmlm'),
+                              field.value?.filter(
+                                (value) => value !== 'ccm-lm',
+                              ),
                             )
                       }}
                     />
-                    <Label>CCM LM</Label>
+                    <Label htmlFor="ccm-lm">CCM LM</Label>
                   </div>
                 )
               }}
@@ -134,16 +137,19 @@ export function ContentNewItem() {
                 return (
                   <div className="flex gap-2">
                     <Checkbox
-                      checked={field.value?.includes('ccmlv')}
+                      id="ccm-lv"
+                      checked={field.value?.includes('ccm-lv')}
                       onCheckedChange={(checked) => {
                         return checked
-                          ? field.onChange([...field.value, 'ccmlv'])
+                          ? field.onChange([...field.value, 'ccm-lv'])
                           : field.onChange(
-                              field.value?.filter((value) => value !== 'ccmlv'),
+                              field.value?.filter(
+                                (value) => value !== 'ccm-lv',
+                              ),
                             )
                       }}
                     />
-                    <Label>CCM LV</Label>
+                    <Label htmlFor="ccm-lv">CCM LV</Label>
                   </div>
                 )
               }}
@@ -156,6 +162,7 @@ export function ContentNewItem() {
                 return (
                   <div className="flex gap-2">
                     <Checkbox
+                      id="stc"
                       checked={field.value?.includes('stc')}
                       onCheckedChange={(checked) => {
                         return checked
@@ -165,7 +172,7 @@ export function ContentNewItem() {
                             )
                       }}
                     />
-                    <Label>STC</Label>
+                    <Label htmlFor="stc">STC</Label>
                   </div>
                 )
               }}
@@ -178,6 +185,7 @@ export function ContentNewItem() {
                 return (
                   <div className="flex gap-2">
                     <Checkbox
+                      id="leiturista"
                       checked={field.value?.includes('leiturista')}
                       onCheckedChange={(checked) => {
                         return checked
@@ -189,7 +197,7 @@ export function ContentNewItem() {
                             )
                       }}
                     />
-                    <Label>LEITURISTA</Label>
+                    <Label htmlFor="leiturista">LEITURISTA</Label>
                   </div>
                 )
               }}

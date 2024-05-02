@@ -1,4 +1,4 @@
-import { Search, Trash2 } from 'lucide-react'
+import { Eraser, Search } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-export function OrderTableFilters() {
+export function ItemsTableFilters() {
   return (
     <form className="flex items-center gap-2">
       <span className="text-sm font-semibold">Filtros:</span>
@@ -35,7 +35,7 @@ export function OrderTableFilters() {
       </Button>
 
       <Button type="button" variant="outline" size="xs">
-        <Trash2 className="mr-2 h-4 w-4" />
+        <Eraser className="mr-2 h-4 w-4" />
         Limpar filtros
       </Button>
     </form>
