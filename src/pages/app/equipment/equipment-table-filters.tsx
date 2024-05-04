@@ -10,11 +10,11 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 
-export function ItemsTableFilters() {
+export function EquipmentTableFilters() {
   return (
     <form className="flex items-center gap-2">
       <span className="text-sm font-semibold">Filtros:</span>
-      <Input placeholder="Nome do Item" className="h-8 w-[200px]" />
+      <Input placeholder="Nome do Equipamento" className="h-8 w-[200px]" />
 
       <Select defaultValue="all">
         <SelectTrigger className="h-8 w-[160px]">

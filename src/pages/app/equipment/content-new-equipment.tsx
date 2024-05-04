@@ -15,38 +15,40 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 
-const newItemFormSchema = z.object({
-  nameItem: z.string().min(3, 'Informe um nome com mais de três caractteres.'),
+const newEquipmentFormSchema = z.object({
+  nameEquipment: z
+    .string()
+    .min(3, 'Informe um nome com mais de três caractteres.'),
   quantityStock: z
     .number({
       message:
         'Não deixe o campo em branco informe uma quantidade maior que 0. ',
     })
     .min(1, 'Informe uma quantidade maior que 0.'),
-  equipes: z.array(z.string()).refine((value) => value.length > 0, {
+  team: z.array(z.string()).refine((value) => value.length > 0, {
     message: 'Você deve selecionar pelo menos um tipo de equipe.',
   }),
 })
 
-type NewItemForm = z.infer<typeof newItemFormSchema>
+type NewEquipmentForm = z.infer<typeof newEquipmentFormSchema>
 
-export function ContentNewItem() {
+export function ContentNewEquipment() {
   const {
     register,
     handleSubmit,
     control,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<NewItemForm>({
+  } = useForm<NewEquipmentForm>({
     defaultValues: {
-      nameItem: '',
+      nameEquipment: '',
       quantityStock: 1,
-      equipes: [],
+      team: [],
     },
-    resolver: zodResolver(newItemFormSchema),
+    resolver: zodResolver(newEquipmentFormSchema),
   })
 
-  async function handleSaveItem(data: NewItemForm) {
+  async function handleSaveEquipment(data: NewEquipmentForm) {
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000))
 
@@ -66,19 +68,19 @@ export function ContentNewItem() {
   return (
     <DialogContent>
       <DialogHeader className="border-b pb-4">
-        <DialogTitle>Novo Item</DialogTitle>
+        <DialogTitle>Novo Equipamento</DialogTitle>
       </DialogHeader>
-      <form className="space-y-4" onSubmit={handleSubmit(handleSaveItem)}>
+      <form className="space-y-4" onSubmit={handleSubmit(handleSaveEquipment)}>
         <div className="space-y-2">
-          <Label htmlFor="nameItem">Nome do item</Label>
+          <Label htmlFor="nameEquipment">Nome do equipamento</Label>
           <Input
-            id="nameItem"
-            placeholder="Informe o nome do item"
-            {...register('nameItem')}
+            id="nameEquipment"
+            placeholder="Informe o nome do equipamento"
+            {...register('nameEquipment')}
           />
-          {errors.nameItem?.message !== '' ? (
+          {errors.nameEquipment?.message !== '' ? (
             <span className="block text-red-500">
-              {errors.nameItem?.message}
+              {errors.nameEquipment?.message}
             </span>
           ) : (
             ''
@@ -86,11 +88,13 @@ export function ContentNewItem() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="quantityStock">Quantidade do item em estoque</Label>
+          <Label htmlFor="quantityStock">
+            Quantidade do equipamento em estoque
+          </Label>
           <Input
             id="quantityStock"
             type="number"
-            placeholder="Informe a quantidade do item em estoque"
+            placeholder="Informe a quantidade do esquipamento em estoque"
             {...register('quantityStock', { valueAsNumber: true })}
           />
           {errors.quantityStock?.message !== '' ? (
@@ -106,7 +110,7 @@ export function ContentNewItem() {
           <Label>Equipes</Label>
           <div className="flex gap-2">
             <Controller
-              name="equipes"
+              name="team"
               control={control}
               render={({ field }) => {
                 return (
@@ -131,7 +135,7 @@ export function ContentNewItem() {
             />
 
             <Controller
-              name="equipes"
+              name="team"
               control={control}
               render={({ field }) => {
                 return (
@@ -156,7 +160,7 @@ export function ContentNewItem() {
             />
 
             <Controller
-              name="equipes"
+              name="team"
               control={control}
               render={({ field }) => {
                 return (
@@ -179,7 +183,7 @@ export function ContentNewItem() {
             />
 
             <Controller
-              name="equipes"
+              name="team"
               control={control}
               render={({ field }) => {
                 return (
@@ -203,10 +207,8 @@ export function ContentNewItem() {
               }}
             />
           </div>
-          {errors.equipes?.message !== '' ? (
-            <span className="block text-red-500">
-              {errors.equipes?.message}
-            </span>
+          {errors.team?.message !== '' ? (
+            <span className="block text-red-500">{errors.team?.message}</span>
           ) : (
             ''
           )}
@@ -218,8 +220,8 @@ export function ContentNewItem() {
             className="w-full"
             disabled={isSubmitting}
           >
-            <Save />
-            Salvar Item
+            <Save className="mr-2 h-4 w-4" />
+            Salvar Equipamento
           </Button>
         </DialogFooter>
       </form>

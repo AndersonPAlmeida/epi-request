@@ -9,7 +9,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 
-export function ItemTableRow() {
+export function EquipmentTableRow() {
   return (
     <TableRow>
       <TableCell className="font-mono text-xs font-medium">
@@ -31,7 +31,7 @@ export function ItemTableRow() {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Editar</p>
+              <p className="text-xs">Editar</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
@@ -44,7 +44,7 @@ export function ItemTableRow() {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Excluir</p>
+              <p className="text-xs">Excluir</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>

@@ -11,35 +11,35 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-import { ContentNewItem } from './content-new-item'
-import { ItemTableRow } from './item-table-row'
-import { ItemsTableFilters } from './items-table-filters'
+import { ContentNewEquipment } from './content-new-equipment'
+import { EquipmentTableFilters } from './equipment-table-filters'
+import { EquipmentTableRow } from './equipment-table-row'
 
-export function Items() {
+export function Equipment() {
   return (
     <div className="space-y-5 p-5">
-      <Helmet title="Itens" />
+      <Helmet title="Equipamento" />
       <div className="flex">
-        <h1 className="text-3xl font-bold tracking-tight">Items</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Equipamento</h1>
         <Dialog>
           <DialogTrigger asChild>
-            <Button className="ml-auto w-40">
-              <Plus />
-              Novo Item
+            <Button className="w-50 ml-auto">
+              <Plus className="mr-2 h-4 w-4" />
+              Novo Equipamento
             </Button>
           </DialogTrigger>
-          <ContentNewItem />
+          <ContentNewEquipment />
         </Dialog>
       </div>
 
-      <ItemsTableFilters />
+      <EquipmentTableFilters />
 
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead>Identificador</TableHead>
-              <TableHead>Nome do Item</TableHead>
+              <TableHead>Nome do Equipamento</TableHead>
               <TableHead className="w-[84px]">Qtd. em estoque</TableHead>
               <TableHead>Equipes que utilizam</TableHead>
               <TableHead></TableHead>
@@ -47,7 +47,7 @@ export function Items() {
           </TableHeader>
           <TableBody>
             {Array.from({ length: 10 }).map((_, i) => {
-              return <ItemTableRow key={i} />
+              return <EquipmentTableRow key={i} />
             })}
           </TableBody>
         </Table>
