@@ -1,4 +1,4 @@
-import { HardHat, Home, UsersRound, Wrench } from 'lucide-react'
+import { HardHat, Home, UserRound, UsersRound, Wrench } from 'lucide-react'
 
 import { NavLink } from './nav-link'
 
@@ -13,6 +13,10 @@ export function MenuNavigation() {
         <NavLink to="/">
           <Home className="h-4 w-4" />
           Início
+        </NavLink>
+        <NavLink to="/user">
+          <UserRound className="h-4 w-4" />
+          Usuários
         </NavLink>
         <NavLink to="/equipament">
           <Wrench className="h-4 w-4" />

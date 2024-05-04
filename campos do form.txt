@@ -1,8 +1,10 @@
 Dados do colaborador
--Matricula
--Nome
--Telefone para contato
--N° da equipe
+-Matricula x
+-Nome x 
+-Telefone para contato x
+-e-mail x
+-senha x 
+-Função
 
 Itens para solicitar
 -Nome do material
