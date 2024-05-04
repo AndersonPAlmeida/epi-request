@@ -1,4 +1,4 @@
-import { HardHat, Home, Wrench } from 'lucide-react'
+import { HardHat, Home, UsersRound, Wrench } from 'lucide-react'
 
 import { NavLink } from './nav-link'
 
@@ -14,9 +14,13 @@ export function MenuNavigation() {
           <Home className="h-4 w-4" />
           Início
         </NavLink>
-        <NavLink to="/items">
+        <NavLink to="/equipament">
           <Wrench className="h-4 w-4" />
-          Items
+          Equipamentos
+        </NavLink>
+        <NavLink to="/team">
+          <UsersRound className="h-4 w-4" />
+          Equipes
         </NavLink>
       </nav>
     </div>
