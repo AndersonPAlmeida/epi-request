@@ -4,7 +4,7 @@ import { NavLink } from './nav-link'
 
 export function MenuNavigation() {
   return (
-    <div className="border-r">
+    <div className="bg-menu border-r">
       <nav className="flex flex-col ">
         <NavLink to="/">
           <HardHat className="h-6 w-6" />
